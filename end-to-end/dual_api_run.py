@@ -1,4 +1,4 @@
-from models.dual_model_api import MulaRecDual
+from models.dual_model_api import MulaRecDualAPI
 from utils import set_logger
 from datetime import datetime
 import pytz
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     logging.info('Training Dual Model - Annotation + SO Title + SO API')
     
     # Load the fine-tuned model
-    model = MulaRecDual(codebert_path = 'microsoft/codebert-base', 
+    model = MulaRecDualAPI(codebert_path = 'microsoft/codebert-base', 
         decoder_layers = 6,
         fix_encoder = False, 
         beam_size = 5,

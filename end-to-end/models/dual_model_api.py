@@ -300,7 +300,7 @@ class Beam(object):
         return sentence
 
 
-class MulaRecDual():
+class MulaRecDualAPI():
     def __init__(self, codebert_path, decoder_layers, fix_encoder, beam_size, \
         max_source_length, max_target_length, load_model_path, l2_norm, fusion):
         logging.info("beam size: {}".format(beam_size))

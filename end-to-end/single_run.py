@@ -36,14 +36,14 @@ if __name__ == '__main__':
     # train model
     model.train(
         # train_filename ='../data/train_3_lines.csv',
-        train_filename ='../data/train.csv',
+        train_filename ='../data/061222_train.csv',
         # train_filename ='../data/train_sample_10k.csv',
         train_batch_size = args.batch_size, 
         num_train_epochs = args.epoch, 
         learning_rate = 5e-5,
         do_eval = True, 
         # dev_filename ='../data/validate_3_lines.csv', 
-        dev_filename ='../data/valid.csv', 
+        dev_filename ='../data/061222_valid.csv', 
         # dev_filename ='../data/valid_sample_100.csv', 
         eval_batch_size = 32,
         output_dir = args.output_dir

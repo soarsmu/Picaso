@@ -1,4 +1,5 @@
 from models.dual_model import MulaRecDual
+from models.dual_model_api import MulaRecDualAPI
 # from models.single_code_model import MulaRecCode
 from models.single_model import MulaRecAnt
 # from models.tri_model import MulaRecTri
@@ -48,35 +49,36 @@ if __name__ == '__main__':
             load_model_path = args.load_model_path,
             l2_norm = True
         )
-    # elif args.model_type == 1:
-    #     logging.info('***' * 10)
-    #     logging.info('single code')
+    elif args.model_type == 1:
+        logging.info('***' * 10)
+        logging.info('annotation + so title')
         
-    #     model = MulaRecCode(
-    #         codebert_path = 'microsoft/codebert-base', 
-    #         decoder_layers = 6, 
-    #         fix_encoder = False, 
-    #         beam_size = 5,
-    #         max_source_length = args.max_length, 
-    #         max_target_length = args.max_length, 
-    #         load_model_path = args.load_model_path,
-    #         l2_norm = True
-    #     )
-    # elif args.model_type == 2:
-    #     logging.info('***' * 10)
-    #     logging.info('dual model')
+        model = MulaRecDual(
+            codebert_path = 'microsoft/codebert-base', 
+            decoder_layers = 6, 
+            fix_encoder = False, 
+            beam_size = 5,
+            max_source_length = args.max_length, 
+            max_target_length = args.max_length, 
+            load_model_path = args.load_model_path,
+            l2_norm = True,
+            fusion = False,
+        )
+    elif args.model_type == 2:
+        logging.info('***' * 10)
+        logging.info('annotation + so title + so api')
         
-    #     model = MulaRecDual(
-    #         codebert_path = 'microsoft/codebert-base', 
-    #         decoder_layers = 6, 
-    #         fix_encoder = False, 
-    #         beam_size = 5,
-    #         max_source_length = args.max_length, 
-    #         max_target_length = args.max_length, 
-    #         load_model_path = args.load_model_path,
-    #         l2_norm = True,
-    #         fusion = True
-    #     )
+        model = MulaRecDualAPI(
+            codebert_path = 'microsoft/codebert-base', 
+            decoder_layers = 6, 
+            fix_encoder = False, 
+            beam_size = 5,
+            max_source_length = args.max_length, 
+            max_target_length = args.max_length, 
+            load_model_path = args.load_model_path,
+            l2_norm = True,
+            fusion = False,
+        )
     # elif args.model_type == 3:        
     #     logging.info('***' * 10)
     #     logging.info('tri model')

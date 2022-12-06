@@ -522,6 +522,8 @@ class MulaRecAnt():
                 
                 logging.info("  {} = {} ".format("bleu", str(dev_bleu)))
                 logging.info("  " + "*" * 20)
+
+                wandb.log({'bleu': dev_bleu})
                 if dev_bleu > best_bleu:
                     logging.info("  Best bleu:%s", dev_bleu)
                     logging.info("  " + "*" * 20)
