@@ -17,6 +17,8 @@ if __name__ == '__main__':
                         help="output directory") 
     parser.add_argument("--epoch", type=int, default=30,
                         help="training epoch")
+    parser.add_argument("--training_file", type=str, required=True, default='../data/061222_train.csv')
+    parser.add_argument("--valid_file", type=str, required=True, default='../data/061222_valid.csv')
     args = parser.parse_args()
     
     set_logger('./log/single_{}.log'.format(datetime.now(pytz.timezone('Asia/Singapore'))))
@@ -36,15 +38,15 @@ if __name__ == '__main__':
     # train model
     model.train(
         # train_filename ='../data/train_3_lines.csv',
-        train_filename ='../data/061222_train.csv',
-        # train_filename ='../data/train_sample_10k.csv',
+        # train_filename ='../data/061222_train.csv',
+        train_filename = args.training_file,
         train_batch_size = args.batch_size, 
         num_train_epochs = args.epoch, 
         learning_rate = 5e-5,
         do_eval = True, 
         # dev_filename ='../data/validate_3_lines.csv', 
-        dev_filename ='../data/061222_valid.csv', 
-        # dev_filename ='../data/valid_sample_100.csv', 
+        # dev_filename ='../data/061222_valid.csv', 
+        dev_filename = args.valid_file,
         eval_batch_size = 32,
         output_dir = args.output_dir
     )
