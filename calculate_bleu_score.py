@@ -7,6 +7,7 @@ python calculate_bleu_score.py --reference codebert/saved_models_our_data-30-epo
 from nltk.translate.bleu_score import sentence_bleu
 import argparse
 import re
+from icecream import ic
 
 def argparser():
     Argparser = argparse.ArgumentParser()
@@ -18,8 +19,17 @@ def argparser():
 
 args = argparser()
 
-reference = open(args.reference, 'r').readlines()
-candidate = open(args.candidate, 'r').readlines()
+reference=[]
+candidate=[]
+
+if len(args.reference.split(',')) > 1:
+    for f in args.reference.split(','):
+        reference += open(f, 'r').readlines()
+    for f in args.candidate.split(','):
+        candidate += open(f, 'r').readlines()
+else:
+    reference = open(args.reference, 'r').readlines()
+    candidate = open(args.candidate, 'r').readlines()
 
 if len(reference) != len(candidate):
     raise ValueError('The number of sentences in both files do not match.')
@@ -31,13 +41,15 @@ score_2 = []
 score_3 = []
 score_4 = []
 
+ic(len(reference))
+
 for i in range(len(reference)):
     ref = reference[i].lower().strip().replace("<init>", "init")
     ref = re.sub(r'\<.*?\>', '', ref)
     ref = ref.replace('>', '')
 
-    print(f"ref: {ref.split()}")
-    print(f"cand: {candidate[i].lower().strip().split()}")
+    # print(f"ref: {ref.split()}")
+    # print(f"cand: {candidate[i].lower().strip().split()}")
     # bleu1 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1,0,0,0)) 
     # bleu2 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1/2,1/2,0,0)) 
     # bleu3 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1/3,1/3,1/3,0)) 
