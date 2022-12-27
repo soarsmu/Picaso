@@ -33,6 +33,7 @@ if __name__ == '__main__':
         max_target_length = args.max_length,
         l2_norm = args.norm,
         load_model_path = None
+        # load_model_path = '/app/API-Recommendation-SO/end-to-end/output/08Des22-relevance-model-single-annotation/checkpoint-best-bleu/pytorch_model.bin'
     )
     
     # train model
