@@ -44,29 +44,15 @@ score_4 = []
 ic(len(reference))
 
 for i in range(len(reference)):
-    ref = reference[i].lower().strip().replace("<init>", "init")
-    ref = re.sub(r'\<.*?\>', '', ref)
-    ref = ref.replace('>', '')
-
-    # print(f"ref: {ref.split()}")
-    # print(f"cand: {candidate[i].lower().strip().split()}")
-    # bleu1 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1,0,0,0)) 
-    # bleu2 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1/2,1/2,0,0)) 
-    # bleu3 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1/3,1/3,1/3,0)) 
-    # bleu4 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1/4,1/4,1/4,1/4)) 
-
-    bleu1 = sentence_bleu([ref.split()], candidate[i].lower().strip().split(), weights=(1,0,0,0)) 
-    bleu2 = sentence_bleu([ref.split()], candidate[i].lower().strip().split(), weights=(1/2,1/2,0,0)) 
-    bleu3 = sentence_bleu([ref.split()], candidate[i].lower().strip().split(), weights=(1/3,1/3,1/3,0)) 
-    bleu4 = sentence_bleu([ref.split()], candidate[i].lower().strip().split(), weights=(1/4,1/4,1/4,1/4)) 
+    bleu1 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1,0,0,0)) 
+    bleu2 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1/2,1/2,0,0)) 
+    bleu3 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1/3,1/3,1/3,0)) 
+    bleu4 = sentence_bleu([reference[i].lower().strip().split()], candidate[i].lower().strip().split(), weights=(1/4,1/4,1/4,1/4)) 
 
     score_1.append(bleu1)
     score_2.append(bleu2)
     score_3.append(bleu3)
     score_4.append(bleu4)
-
-    # print(f"score: {tmp}")
-    # score += tmp
 
 
 # score /= len(reference)
